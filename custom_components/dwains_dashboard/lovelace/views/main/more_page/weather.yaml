@@ -21,6 +21,8 @@
           cards:
             - type: weather-forecast
               entity: {{ _dd_config.global["weather"] }}
+            - type: weather-forecast
+              entity: {{ _dd_config.global["weather"] }}
 
         {% if _dd_config.global["weather_radar"] %}
         - type: custom:dwains-flexbox-card

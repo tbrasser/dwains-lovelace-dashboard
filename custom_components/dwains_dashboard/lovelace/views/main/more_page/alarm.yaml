@@ -19,10 +19,29 @@
           padding: true
           items_classes: 'col-xs-12'
           cards:
-            - type: alarm-panel
+            - type: custom:alarmo-card
               entity: {{ _dd_config.global["alarm"] }}
+              use_clear_icon: true
               states:
-                - arm_home
-                - arm_away
-                - arm_night
+                disarmed:
+                  button_label: Turn off
+                  state_labe: Disabled
+                arming:
+                  state_label: Enabling
+                armed_away:
+                  hide: false
+                  button_label: Away
+                  state_label: Enabled
+                armed_home:
+                  hide: true
+                armed_night:
+                  hide: false
+                  button_label: Night
+                  state_label: Enabled
+                armed_custom_bypass:
+                  hide: true
+                pending:
+                  state_label: Waiting
+                triggered:
+                  state_label: Firing
 {% endif %}

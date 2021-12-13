@@ -22,40 +22,19 @@
           padding: true
           items_classes: 'col-xs-12'
           cards:
-            {% if room["vacuum"]["advanced_view"] and room["vacuum"]["advanced_view"] == 'true' %}
-            - type: 'custom:vacuum-card'
+            - type: 'custom:xiaomi-vacuum-map-card'
               entity: {{ room["vacuum"]["entity"] }}
-              {% if room["vacuum"]["camera"] %}
-              map: {{ room["vacuum"]["camera"] }}
-              {% endif %}
-              stats:
-                default:
-                  - attribute: filter_left
-                    unit: hours
-                    subtitle: Filter
-                  - attribute: side_brush_left
-                    unit: hours
-                    subtitle: Side brush
-                  - attribute: main_brush_left
-                    unit: hours
-                    subtitle: Main brush
-                  - attribute: sensor_dirty_left
-                    unit: hours
-                    subtitle: Sensors
-                cleaning:
-                  - attribute: cleaned_area
-                    unit: m2
-                    subtitle: Cleaning area
-                  - attribute: cleaning_time
-                    unit: minutes
-                    subtitle: Cleaning time
-            {% else %}
-            - type: custom:more-info-card
-              style: |
-                .card-header {
-                  display: none;
-                }
-              entity: {{ room["vacuum"]["entity"] }}
-            {% endif %}
+              preset_name: Live map
+              two_finger_pan: true
+              append_icons: true
+              append_tiles: true
+              map_source: 
+                camera: {{ room["vacuum"]["camera"] }}
+              calibration_source:
+                camera: true
+              # map_modes:
+              #   - template: vacuum_clean_zone
+              #   - template: vacuum_goto
+              #   - template: vacuum_follow_path
 {% endif %}
 {% endfor %}

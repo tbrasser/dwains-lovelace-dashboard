@@ -166,7 +166,7 @@
                     ignore_case: true
                   card:
                     type: custom:dwains-flexbox-card
-                    items_classes: 'col-xs-12'
+                    items_classes: 'col-xs-6'
                 {% endif %}
             {% endif %}
             {% endfor %}

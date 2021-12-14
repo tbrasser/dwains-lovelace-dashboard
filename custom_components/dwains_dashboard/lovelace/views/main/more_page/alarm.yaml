@@ -25,7 +25,7 @@
               states:
                 disarmed:
                   button_label: Turn off
-                  state_labe: Disabled
+                  state_label: Disabled
                 arming:
                   state_label: Enabling
                 armed_away:

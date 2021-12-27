@@ -24,7 +24,7 @@
           cards:
             - type: 'custom:xiaomi-vacuum-map-card'
               entity: {{ room["vacuum"]["entity"] }}
-              preset_name: Live map
+              preset_name: Downstairs
               two_finger_pan: true
               append_icons: true
               append_tiles: true
@@ -32,9 +32,45 @@
                 camera: {{ room["vacuum"]["camera"] }}
               calibration_source:
                 camera: true
-              # map_modes:
-              #   - template: vacuum_clean_zone
-              #   - template: vacuum_goto
-              #   - template: vacuum_follow_path
+              icons:
+                - icon: mdi:home-floor-0
+                  tooltip: Downstairs
+                  tap_action:
+                    action: call-service
+                    service: vacuum.send_command
+                    service_data:
+                      entity_id: {{ room["vacuum"]["entity"] }}
+                      command: load_multi_map
+                      params: 0
+              map_modes:
+                - template: vacuum_clean_zone
+                - template: vacuum_clean_zone_predefined
+                  predefined_selections:
+                    - zones: [[25500, 25500, 26500, 26500]]
+                - template: vacuum_goto
+              additional_presets:
+                - preset_name: Upstairs
+                  entity: {{ room["vacuum"]["entity"] }}
+                  map_source:
+                    camera: {{ room["vacuum"]["camera"] }}
+                  calibration_source:
+                    camera: true
+                  append_icons: true
+                  icons:
+                    - icon: mdi:home-floor-1
+                      tooltip: Upstairs
+                      tap_action:
+                        action: call-service
+                        service: vacuum.send_command
+                        service_data:
+                          entity_id: {{ room["vacuum"]["entity"] }}
+                          command: load_multi_map
+                          params: 1
+                  map_modes:
+                    - template: vacuum_clean_zone
+                    - template: vacuum_clean_zone_predefined
+                      predefined_selections:
+                        - zones: [[27500, 27500, 28500, 28500]]
+                    - template: vacuum_goto
 {% endif %}
 {% endfor %}
